@@ -3,7 +3,7 @@
 # @Time    : 2019/12/12 下午3:09
 # @Author  : MaybeShewill-CV
 # @Site    : https://github.com/MaybeShewill-CV/bisenetv2-tensorflow
-# @File    : segcomp_reader.py
+# @File    : cityscapes_reader.py
 # @IDE: PyCharm
 """
 CityScapes dataset reader
@@ -16,15 +16,15 @@ import tensorflow as tf
 import tqdm
 from PIL import Image
 
-from local_utils.augment_utils.segcomp import augmentation_utils as aug
+from local_utils.augment_utils.cityscapes import augmentation_utils as aug
 from local_utils.config_utils import parse_config_utils
 
-CFG = parse_config_utils.segcomp_cfg
+CFG = parse_config_utils.cityscapes_cfg_v2
 
 
 class _CitySpacesDataset(object):
     """
-    segcomp dataset
+    cityscapes dataset
     """
     def __init__(self, image_file_paths):
         """
