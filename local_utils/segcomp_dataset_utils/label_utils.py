@@ -64,23 +64,23 @@ Label = namedtuple('Label', [
 
 labels = [
     # name       id  trainId  cat.  catId hasInstances ignoreInEval color
-    Label('Car',      0, 255, 'void', 0, False, True, (0,     0, 255)),
+    Label('Car',      0, 255, 'void', 0, False, False,(0,     0, 255)), # predict
     Label('Bus',      1, 255, 'void', 0, False, True, (193, 214,   0)),
     Label('Truck',    2, 255, 'void', 0, False, True, (180,   0, 129)),
     Label('SVehicle', 3, 255, 'void', 0, False, True, (255, 121, 166)),
-    Label('Pedestrian',4, 255, 'void',0, False, True, (255,   0,   0)),
+    Label('Pedestrian',4, 255,'void', 0, False, False,(255,   0,   0)), # predict
     Label('Motorbike',5, 255, 'void', 0, False, True, (65,  166,   1)),
     Label('Bycycle',  6, 255, 'void', 0, False, True, (208, 149,   1)),
-    Label('Signal',   7, 255, 'void', 0, False, True, (255, 255,   0)),
+    Label('Signal',   7, 255, 'void', 0, False, False,(255, 255,   0)), # predict
     Label('Signs',    8, 255, 'void', 0, False, True, (255, 134,   0)),
     Label('Sky',      9, 255, 'void', 0, False, True, (0,   152, 225)),
-    Label('Building',10, 255, 'void', 0, False, True, (0,   203, 152)),
+    Label('Building',10, 255, 'void', 0, False, True, (0,   203, 151)),
     Label('Natural', 11, 255, 'void', 0, False, True, (85,  255,  50)),
     Label('Wall',    12, 255, 'void', 0, False, True, (92,  136, 125)),
-    Label('Lane',    13, 255, 'void', 0, False, True, (69,   47, 142)),
+    Label('Lane',    13, 255, 'void', 0, False, False,(69,   47, 142)), # predict
     Label('Ground',  14, 255, 'void', 0, False, True, (136,  45,  66)),
     Label('Sidewalk',15, 255, 'void', 0, False, True, (0,   255, 255)),
-    Label('RoadShoulder',16,255,'void',0, False, True, (215,  0,  255)),
+    Label('RoadShoulder',16,255,'void',0, False, True,(215,  0,  255)),
     Label('Obstacle',17, 255, 'void', 0, False, True, (180, 131, 135)),
     Label('others',  18, 255, 'void', 0, False, True, (81,   99,   0)),
     Label('own',     19, 255, 'void', 0, False, True, (86,   62,  67))
@@ -148,7 +148,7 @@ def assureSingleInstanceName(name):
 # just a dummy main
 if __name__ == "__main__":
     # Print all the labels
-    print("List of cityscapes labels:")
+    print("List of segcomp labels:")
     print("")
     print(
         "    {:>21} | {:>3} | {:>7} | {:>14} | {:>10} | {:>12} | {:>12}".format(
