@@ -59,15 +59,15 @@ class _CityScapesTfWriter(object):
         self._tfrecords_dir = ops.join(self._dataset_dir, 'tfrecords')
         os.makedirs(self._tfrecords_dir, exist_ok=True)
         self._train_image_index_file_path = CFG.DATASET.TRAIN_FILE_LIST
-        self._val_image_index_file_path = CFG.DATASET.VAL_FILE_LIST
+        # self._val_image_index_file_path = CFG.DATASET.VAL_FILE_LIST
         self._test_image_index_file_path = CFG.DATASET.TEST_FILE_LIST
 
         self._train_image_paths = []
-        self._val_image_paths = []
+        # self._val_image_paths = []
         self._test_image_paths = []
         self._load_train_val_image_index()
         np.random.shuffle(self._train_image_paths)
-        np.random.shuffle(self._val_image_paths)
+        # np.random.shuffle(self._val_image_paths)
         np.random.shuffle(self._test_image_paths)
 
     def _load_train_val_image_index(self):
@@ -88,29 +88,29 @@ class _CityScapesTfWriter(object):
         except OSError as err:
             print(err)
             raise err
-        try:
-            with open(self._val_image_index_file_path, 'r') as file:
-                for line in file:
-                    line_info = line.rstrip('\r').rstrip('\n').strip(' ').split()
-                    val_src_image_path = line_info[0]
-                    val_label_image_path = line_info[1]
-                    assert ops.exists(val_src_image_path), '{:s} not exist'.format(val_src_image_path)
-                    assert ops.exists(val_label_image_path), '{:s} not exist'.format(val_label_image_path)
+        # try:
+        #     with open(self._val_image_index_file_path, 'r') as file:
+        #         for line in file:
+        #             line_info = line.rstrip('\r').rstrip('\n').strip(' ').split()
+        #             val_src_image_path = line_info[0]
+        #             val_label_image_path = line_info[1]
+        #             assert ops.exists(val_src_image_path), '{:s} not exist'.format(val_src_image_path)
+        #             assert ops.exists(val_label_image_path), '{:s} not exist'.format(val_label_image_path)
 
-                    self._val_image_paths.append([val_src_image_path, val_label_image_path])
-        except OSError as err:
-            print(err)
-            raise err
+        #             self._val_image_paths.append([val_src_image_path, val_label_image_path])
+        # except OSError as err:
+        #     print(err)
+        #     raise err
         try:
             with open(self._test_image_index_file_path, 'r') as file:
                 for line in file:
                     line_info = line.rstrip('\r').rstrip('\n').strip(' ').split()
                     test_src_image_path = line_info[0]
-                    test_label_image_path = line_info[1]
+                    # test_label_image_path = line_info[1]
                     assert ops.exists(test_src_image_path), '{:s} not exist'.format(test_src_image_path)
-                    assert ops.exists(test_label_image_path), '{:s} not exist'.format(test_label_image_path)
+                    # assert ops.exists(test_label_image_path), '{:s} not exist'.format(test_label_image_path)
 
-                    self._test_image_paths.append([test_src_image_path, test_label_image_path])
+                    self._test_image_paths.append([test_src_image_path])
         except OSError as err:
             print(err)
             raise err

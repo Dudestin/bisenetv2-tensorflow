@@ -23,12 +23,12 @@ AUG:
         CONTRAST_JITTER_RATIO: 0.5
         SATURATION_JITTER_RATIO: 0.5
 DATASET:
-    DATA_DIR: '/PATH/segcomp_dataset/segcomp'
+    DATA_DIR: '/home/splas/DATASET/edgecomp_dataset'
     IMAGE_TYPE: 'rgb'  # choice rgb or rgba
     NUM_CLASSES: 20
-    TEST_FILE_LIST: '/PATH/segcomp_dataset/segcomp/image_file_index/test.txt'
-    TRAIN_FILE_LIST: '/PATH/segcomp_dataset/segcomp/image_file_index/train.txt'
-    VAL_FILE_LIST: '/PATH/segcomp_dataset/segcomp/image_file_index/val.txt'
+    TEST_FILE_LIST: '/home/splas/DATASET/edgecomp_dataset/image_file_index/test.txt'
+    TRAIN_FILE_LIST: '/home/splas/DATASET/edgecomp_dataset/image_file_index/train.txt'
+    VAL_FILE_LIST: '/home/splas/DATASET/edgecomp_dataset/image_file_index/val.txt'
     IGNORE_INDEX: 255
     PADDING_VALUE: [127.5, 127.5, 127.5]
     MEAN_VALUE: [0.5, 0.5, 0.5]
@@ -53,7 +53,7 @@ TRAIN:
         ENABLE: False
         SNAPSHOT_PATH: ''
     SNAPSHOT_EPOCH: 8
-    BATCH_SIZE: 16
+    BATCH_SIZE: 12
     VAL_BATCH_SIZE: 4
     EPOCH_NUMS: 905
     WARM_UP:
