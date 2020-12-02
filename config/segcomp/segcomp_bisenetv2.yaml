@@ -7,8 +7,8 @@ AUG:
     MAX_SCALE_FACTOR: 2.0  # for stepscaling
     MIN_SCALE_FACTOR: 0.75  # for stepscaling
     SCALE_STEP_SIZE: 0.25  # for stepscaling
-    TRAIN_CROP_SIZE: [2048, 1024]  # crop size for training
-    EVAL_CROP_SIZE: [2048, 1024]  # crop size for evaluating
+    TRAIN_CROP_SIZE: [1936, 1216]  # crop size for training
+    EVAL_CROP_SIZE: [1936, 1216]  # crop size for evaluating
     MIRROR: True
     FLIP: False
     FLIP_RATIO: 0.5
@@ -23,12 +23,12 @@ AUG:
         CONTRAST_JITTER_RATIO: 0.5
         SATURATION_JITTER_RATIO: 0.5
 DATASET:
-    DATA_DIR: '/PATH/IMAGE_SCENE_SEGMENTATION/CITYSPACES'
+    DATA_DIR: '/PATH/segcomp_dataset/segcomp'
     IMAGE_TYPE: 'rgb'  # choice rgb or rgba
-    NUM_CLASSES: 19
-    TEST_FILE_LIST: '/PATH/IMAGE_SCENE_SEGMENTATION/CITYSPACES/image_file_index/test.txt'
-    TRAIN_FILE_LIST: '/PATH/IMAGE_SCENE_SEGMENTATION/CITYSPACES/image_file_index/train.txt'
-    VAL_FILE_LIST: '/PATH/IMAGE_SCENE_SEGMENTATION/CITYSPACES/image_file_index/val.txt'
+    NUM_CLASSES: 20
+    TEST_FILE_LIST: '/PATH/segcomp_dataset/segcomp/image_file_index/test.txt'
+    TRAIN_FILE_LIST: '/PATH/segcomp_dataset/segcomp/image_file_index/train.txt'
+    VAL_FILE_LIST: '/PATH/segcomp_dataset/segcomp/image_file_index/val.txt'
     IGNORE_INDEX: 255
     PADDING_VALUE: [127.5, 127.5, 127.5]
     MEAN_VALUE: [0.5, 0.5, 0.5]
