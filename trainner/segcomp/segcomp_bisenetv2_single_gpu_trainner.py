@@ -21,7 +21,7 @@ import tqdm
 
 from bisenet_model import bisenet_v2
 from local_utils.config_utils import parse_config_utils
-from data_provider.segcomp import cityscapes_tf_io
+from data_provider.segcomp import segcomp_tf_io
 
 LOG = loguru.logger
 CFG = parse_config_utils.segcomp_cfg
@@ -37,8 +37,8 @@ class BiseNetV2CityScapesTrainer(object):
         initialize bisenetv2 trainner
         """
         # define solver params and dataset
-        self._cityscapes_io = cityscapes_tf_io.CityScapesTfIO()
-        self._train_dataset = self._cityscapes_io.train_dataset_reader
+        self._segcompscapes_io = segcomp_tf_io.CityScapesTfIO()
+        self._train_dataset = self._segcompscapes_io.train_dataset_reader
         self._steps_per_epoch = len(self._train_dataset)
 
         self._model_name = CFG.MODEL.MODEL_NAME
