@@ -3,17 +3,21 @@
 # @Time    : 2020/1/15 上午10:49
 # @Author  : MaybeShewill-CV
 # @Site    : https://github.com/MaybeShewill-CV/bisenetv2-tensorflow
-# @File    : freeze_bisenet_model.py
+# @File    : freeze_segcomp_bisenetv2_model.py
 # @IDE: PyCharm
 """
-Freeze bisenet model
+Freeze bisenetv2 model
 """
 import argparse
 
 import tensorflow as tf
 from tensorflow.python.framework import graph_util
+from tensorflow.python.tools import optimize_for_inference_lib
 
-from bisenet_model import bisenet
+from bisenet_model import bisenet_v2
+from local_utils.config_utils import parse_config_utils
+
+CFG = parse_config_utils.segcomp_cfg
 
 
 def init_args():
@@ -24,8 +28,10 @@ def init_args():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--weights_path', type=str, help='The ckpt file path')
-    parser.add_argument('--pb_file_path', type=str, help='The output frozen pb file path',
-                        default='./checkpoint/bisenetv2_segcomp.pb')
+    parser.add_argument('--frozen_pb_file_path', type=str, help='The output frozen pb file path',
+                        default='./checkpoint/bisenetv2_segcomp_frozen.pb')
+    parser.add_argument('--optimized_pb_file_path', type=str, help='The output frozen pb file path',
+                        default='./checkpoint/bisenetv2_segcomp_optimized.pb')
 
     return parser.parse_args()
 
@@ -38,10 +44,10 @@ def load_graph_from_ckpt_file(weights_path):
     """
     # construct compute graph
     input_tensor = tf.placeholder(dtype=tf.float32, shape=[1, 512, 1024, 3], name='input_tensor')
-    net = bisenet.BiseNet(phase='test')
+    net = bisenet_v2.BiseNetV2(phase='test', cfg=CFG)
     prediction = net.inference(
         input_tensor=input_tensor,
-        name='BiseNet',
+        name='BiseNetV2',
         reuse=False
     )
     prediction = tf.squeeze(prediction, axis=0, name='final_output')
@@ -85,16 +91,45 @@ def freeze_model(output_pb_file_path, sess, graph_def):
     return
 
 
+def optimize_inference_model(frozen_pb_file_path, output_pb_file_path):
+    """
+
+    :param frozen_pb_file_path:
+    :param output_pb_file_path:
+    :return:
+    """
+    input_graph = tf.GraphDef()
+    with tf.gfile.GFile(frozen_pb_file_path, "rb") as f:
+        data2read = f.read()
+        input_graph.ParseFromString(data2read)
+
+    optimized_graph = optimize_for_inference_lib.optimize_for_inference(
+        input_graph_def=input_graph,
+        input_node_names=['input_tensor'],
+        output_node_names=['final_output'],
+        placeholder_type_enum=tf.float32.as_datatype_enum
+    )
+
+    with tf.gfile.GFile(output_pb_file_path, 'w') as f:
+        f.write(optimized_graph.SerializeToString())
+    return
+
+
 if __name__ == '__main__':
     """
     test code
     """
     args = init_args()
 
-    bisenet_gd, bisenet_sess, _ = load_graph_from_ckpt_file(args.weights_path)
+    bisenetv2_gd, bisenetv2_sess, _ = load_graph_from_ckpt_file(args.weights_path)
 
     freeze_model(
-        output_pb_file_path=args.pb_file_path,
-        sess=bisenet_sess,
-        graph_def=bisenet_gd
+        output_pb_file_path=args.frozen_pb_file_path,
+        sess=bisenetv2_sess,
+        graph_def=bisenetv2_gd
     )
+
+    # optimize_inference_model(
+    #     frozen_pb_file_path=args.frozen_pb_file_path,
+    #     output_pb_file_path=args.optimized_pb_file_path
+    # )

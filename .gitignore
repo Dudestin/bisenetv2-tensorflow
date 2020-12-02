@@ -120,3 +120,6 @@ tools/__init__.py
 
 tmp*.py
 checkpoint/
+# TODO : EDIT BELOW & edit config file
+*~
+\#*\#

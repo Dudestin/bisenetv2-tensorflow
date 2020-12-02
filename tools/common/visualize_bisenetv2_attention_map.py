@@ -18,7 +18,7 @@ import cv2
 
 from local_utils.config_utils import parse_config_utils
 
-CFG = parse_config_utils.cityscapes_cfg_v2
+CFG = parse_config_utils.segcomp_cfg
 
 
 def init_args():

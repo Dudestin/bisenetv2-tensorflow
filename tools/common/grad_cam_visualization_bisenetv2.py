@@ -45,7 +45,7 @@ def init_args():
         '--weights_path',
         type=str,
         help='The weight file path',
-        default='./model/cityscapes/bisenetv2/cityscapes.ckpt'
+        default='./model/segcomp/bisenetv2/segcomp.ckpt'
     )
 
     return parser.parse_args()
