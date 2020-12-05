@@ -26,9 +26,9 @@ DATASET:
     DATA_DIR: '/content/drive/MyDrive/edgecomp_dataset'
     IMAGE_TYPE: 'rgb'  # choice rgb or rgba
     NUM_CLASSES: 20
-    TEST_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/test.txt'
-    TRAIN_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/train.txt'
-    VAL_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/train.txt'
+    TEST_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/seg_test_images.txt'
+    TRAIN_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/seg_train_images.txt'
+    VAL_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/seg_train_images.txt'
     IGNORE_INDEX: 255
     PADDING_VALUE: [127.5, 127.5, 127.5]
     MEAN_VALUE: [0.5, 0.5, 0.5]
@@ -46,8 +46,8 @@ MODEL:
 TEST:
     TEST_MODEL: 'model/segcomp/final'
 TRAIN:
-    MODEL_SAVE_DIR: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset/model/'
-    TBOARD_SAVE_DIR: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset/tboard/'
+    MODEL_SAVE_DIR: '/content/drive/MyDrive/edgecomp_dataset/model/'
+    TBOARD_SAVE_DIR: '/content/drive/MyDrive/edgecomp_dataset/tboard/'
     MODEL_PARAMS_CONFIG_FILE_NAME: "model_train_config.json"
     RESTORE_FROM_SNAPSHOT:
         ENABLE: False
@@ -85,5 +85,5 @@ GPU:
     GPU_MEMORY_FRACTION: 0.9
     TF_ALLOW_GROWTH: True
 LOG:
-    SAVE_DIR: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset/log/'
+    SAVE_DIR: '/content/drive/MyDrive/edgecomp_dataset/log/'
     LEVEL: INFO
