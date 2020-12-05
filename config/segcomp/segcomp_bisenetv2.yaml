@@ -42,7 +42,7 @@ MODEL:
     BISENETV2:
         GE_EXPAND_RATIO: 6
         SEMANTIC_CHANNEL_LAMBDA: 0.25
-
+        SEGHEAD_CHANNEL_EXPAND_RATIO: 2
 TEST:
     TEST_MODEL: 'model/segcomp/final'
 TRAIN:
