@@ -8,8 +8,6 @@
 """
 Train bisenetv2 on cityscapes dataset
 """
-import sys
-sys.path.insert(1, '/content/bisenetv2-tensorflow-colab')
 from trainner.segcomp import segcomp_bisenetv2_single_gpu_trainner as single_gpu_trainner
 from local_utils.log_util import init_logger
 from local_utils.config_utils import parse_config_utils
