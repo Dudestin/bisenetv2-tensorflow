@@ -128,6 +128,7 @@ class _CityScapesTfWriter(object):
         os.makedirs(tfrecords_dir, exist_ok=True)
 
         LOG.info('Writing {:s}....'.format(tfrecords_path))
+        print('Writing {:s}....'.format(tfrecords_path))
 
         with tf.python_io.TFRecordWriter(tfrecords_path) as writer:
             for sample_path in sample_image_paths:
