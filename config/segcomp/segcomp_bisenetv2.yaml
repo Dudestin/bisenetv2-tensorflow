@@ -53,7 +53,7 @@ TRAIN:
         ENABLE: False
         SNAPSHOT_PATH: ''
     SNAPSHOT_EPOCH: 8
-    BATCH_SIZE: 12
+    BATCH_SIZE: 11
     VAL_BATCH_SIZE: 4
     EPOCH_NUMS: 905
     WARM_UP:
