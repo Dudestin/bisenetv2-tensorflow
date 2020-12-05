@@ -23,12 +23,12 @@ AUG:
         CONTRAST_JITTER_RATIO: 0.5
         SATURATION_JITTER_RATIO: 0.5
 DATASET:
-    DATA_DIR: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset'
+    DATA_DIR: '/content/drive/MyDrive/edgecomp_dataset'
     IMAGE_TYPE: 'rgb'  # choice rgb or rgba
     NUM_CLASSES: 20
-    TEST_FILE_LIST: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset/image_file_index/test.txt'
-    TRAIN_FILE_LIST: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset/image_file_index/train.txt'
-    VAL_FILE_LIST: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset/image_file_index/train.txt'
+    TEST_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/test.txt'
+    TRAIN_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/train.txt'
+    VAL_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/train.txt'
     IGNORE_INDEX: 255
     PADDING_VALUE: [127.5, 127.5, 127.5]
     MEAN_VALUE: [0.5, 0.5, 0.5]
