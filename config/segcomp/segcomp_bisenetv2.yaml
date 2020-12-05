@@ -26,7 +26,7 @@ DATASET:
     DATA_DIR: '/content/drive/MyDrive/edgecomp_dataset'
     IMAGE_TYPE: 'rgb'  # choice rgb or rgba
     NUM_CLASSES: 20
-    TEST_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/seg_test_images.txt'
+    TEST_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/seg_train_images.txt'
     TRAIN_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/seg_train_images.txt'
     VAL_FILE_LIST: '/content/drive/MyDrive/edgecomp_dataset/image_file_index/seg_train_images.txt'
     IGNORE_INDEX: 255
