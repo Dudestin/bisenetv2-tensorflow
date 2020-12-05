@@ -222,9 +222,9 @@ class Config(dict):
         return json.dump(origin_dict, f_obj)
 
 
-cityscapes_cfg = Config(config_path='./config/cityscapes/cityscapes_bisenet.yaml')
-cityscapes_cfg_v2 = Config(config_path='./config/cityscapes/cityscapes_bisenetv2.yaml')
-celebamask_hq_cfg = Config(config_path='./config/celebamask_hq/celebamask_hq_bisenetv2.yaml')
+cityscapes_cfg = Config(config_path='/content/bisenetv2-tensorflow-colab/config/cityscapes/cityscapes_bisenet.yaml')
+cityscapes_cfg_v2 = Config(config_path='/content/bisenetv2-tensorflow-colab/config/cityscapes/cityscapes_bisenetv2.yaml')
+celebamask_hq_cfg = Config(config_path='/content/bisenetv2-tensorflow-colab/config/celebamask_hq/celebamask_hq_bisenetv2.yaml')
 
 segcomp_cfg = Config(config_path='./config/segcomp/segcomp_bisenetv2.yaml')
 
