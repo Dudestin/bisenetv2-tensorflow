@@ -23,17 +23,17 @@ AUG:
         CONTRAST_JITTER_RATIO: 0.5
         SATURATION_JITTER_RATIO: 0.5
 DATASET:
-    DATA_DIR: '/home/splas/DATASET/edgecomp_dataset'
+    DATA_DIR: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset'
     IMAGE_TYPE: 'rgb'  # choice rgb or rgba
     NUM_CLASSES: 20
-    TEST_FILE_LIST: '/home/splas/DATASET/edgecomp_dataset/image_file_index/test.txt'
-    TRAIN_FILE_LIST: '/home/splas/DATASET/edgecomp_dataset/image_file_index/train.txt'
-    VAL_FILE_LIST: '/home/splas/DATASET/edgecomp_dataset/image_file_index/val.txt'
+    TEST_FILE_LIST: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset/image_file_index/test.txt'
+    TRAIN_FILE_LIST: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset/image_file_index/train.txt'
+    VAL_FILE_LIST: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset/image_file_index/train.txt'
     IGNORE_INDEX: 255
     PADDING_VALUE: [127.5, 127.5, 127.5]
     MEAN_VALUE: [0.5, 0.5, 0.5]
     STD_VALUE: [0.5, 0.5, 0.5]
-    CPU_MULTI_PROCESS_NUMS: 16
+    CPU_MULTI_PROCESS_NUMS: 2
 FREEZE:
     MODEL_FILENAME: 'model'
     PARAMS_FILENAME: 'params'
@@ -42,12 +42,12 @@ MODEL:
     BISENETV2:
         GE_EXPAND_RATIO: 6
         SEMANTIC_CHANNEL_LAMBDA: 0.25
-        SEGHEAD_CHANNEL_EXPAND_RATIO: 2
+
 TEST:
     TEST_MODEL: 'model/segcomp/final'
 TRAIN:
-    MODEL_SAVE_DIR: 'model/segcomp/'
-    TBOARD_SAVE_DIR: 'tboard/segcomp/'
+    MODEL_SAVE_DIR: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset/model/'
+    TBOARD_SAVE_DIR: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset/tboard/'
     MODEL_PARAMS_CONFIG_FILE_NAME: "model_train_config.json"
     RESTORE_FROM_SNAPSHOT:
         ENABLE: False
@@ -85,5 +85,5 @@ GPU:
     GPU_MEMORY_FRACTION: 0.9
     TF_ALLOW_GROWTH: True
 LOG:
-    SAVE_DIR: './log'
+    SAVE_DIR: '/content/drive/MyDrive/segcomp_dataset/edgecomp_dataset/log/'
     LEVEL: INFO

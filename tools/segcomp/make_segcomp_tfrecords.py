@@ -8,6 +8,8 @@
 """
 Generate cityscapes tfrecords tools
 """
+import sys
+sys.path.insert(1, '/content/bisenetv2-tensorflow-colab')
 from data_provider.segcomp import segcomp_tf_io
 from local_utils.log_util import init_logger
 

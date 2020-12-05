@@ -4,7 +4,7 @@
 # @Author  : MaybeShewill-CV
 # @Site    : https://github.com/MaybeShewill-CV/bisenetv2-tensorflow
 # @File    : segcomp_bisenetv2_single_gpu_trainner.py
-# @IDE: PyCharm
+# @IDE: PyCharmda
 """
 Bisenetv2 trainner for cityscapes dataset
 """
