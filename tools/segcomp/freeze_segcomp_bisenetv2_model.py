@@ -29,7 +29,7 @@ def init_args():
 
     parser.add_argument('--weights_path', type=str, help='The ckpt file path')
     parser.add_argument('--frozen_pb_file_path', type=str, help='The output frozen pb file path',
-                        default='./checkpoint/bisenetv2_segcomp_frozen.pb')
+                        default='/tmp/bisenetv2_segcomp_frozen.pb')
     parser.add_argument('--optimized_pb_file_path', type=str, help='The output frozen pb file path',
                         default='./checkpoint/bisenetv2_segcomp_optimized.pb')
 
