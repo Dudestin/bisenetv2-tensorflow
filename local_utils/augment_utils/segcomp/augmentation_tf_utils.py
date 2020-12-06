@@ -33,7 +33,7 @@ def decode(serialized_example):
         })
 
     # decode gt image
-    gt_image = tf.image.decode_png(features['gt_src_image_raw'], channels=3)
+    gt_image = tf.image.decode_jpeg(features['gt_src_image_raw'], channels=3)
     gt_image = tf.reshape(gt_image, shape=[CFG.AUG.TRAIN_CROP_SIZE[1], CFG.AUG.TRAIN_CROP_SIZE[0], 3])
 
     # decode gt binary image
