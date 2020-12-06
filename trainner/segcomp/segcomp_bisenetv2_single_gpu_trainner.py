@@ -181,7 +181,9 @@ class BiseNetV2CityScapesTrainer(object):
             summary_merge_list = [
                 tf.summary.scalar("learn_rate", self._learn_rate),
                 tf.summary.scalar("total", self._loss),
-                tf.summary.scalar('l2_loss', self._l2_loss)
+                tf.summary.scalar('l2_loss', self._l2_loss),
+                tf.summary.image('predict', self._prediction),
+                tf.summary.image('annotation', self._input_label_image)
             ]
             if self._enable_miou:
                 with tf.control_dependencies([self._miou_update_op]):
@@ -189,7 +191,9 @@ class BiseNetV2CityScapesTrainer(object):
                         tf.summary.scalar("learn_rate", self._learn_rate),
                         tf.summary.scalar("total", self._loss),
                         tf.summary.scalar('l2_loss', self._l2_loss),
-                        tf.summary.scalar('miou', self._miou)
+                        tf.summary.scalar('miou', self._miou),
+                        tf.summary.image('predict', self._prediction),
+                        tf.summary.image('annotation', self._input_label_image)
                     ]
                     self._write_summary_op_with_miou = tf.summary.merge(summary_merge_list_with_miou)
             if ops.exists(self._tboard_save_dir):
