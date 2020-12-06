@@ -178,10 +178,15 @@ class BiseNetV2CityScapesTrainer(object):
 
         # define summary
         with tf.variable_scope('summary'):
+            img_shape = tf.shape(self._input_src_image)
+            print(img_shape)
             summary_merge_list = [
                 tf.summary.scalar("learn_rate", self._learn_rate),
                 tf.summary.scalar("total", self._loss),
-                tf.summary.scalar('l2_loss', self._l2_loss)
+                tf.summary.scalar('l2_loss', self._l2_loss),
+                #tf.summary.image('input_src_image', tf.reshape(self._input_src_image, [-1, img_shape[0], img_shape[1], img_shape[2]]), 1),
+                #tf.summary.image('prediction', tf.cast(self._prediciton, tf.uint8), 3),
+                #tf.summary.image('input_label_image', self._input_label_image, 3)
             ]
             if self._enable_miou:
                 with tf.control_dependencies([self._miou_update_op]):
@@ -189,7 +194,10 @@ class BiseNetV2CityScapesTrainer(object):
                         tf.summary.scalar("learn_rate", self._learn_rate),
                         tf.summary.scalar("total", self._loss),
                         tf.summary.scalar('l2_loss', self._l2_loss),
-                        tf.summary.scalar('miou', self._miou)
+                        tf.summary.scalar('miou', self._miou),
+                        #tf.summary.image('input_src_image', tf.reshape(self._input_src_image, [-1, img_shape[0], img_shape[1], img_shape[2]]), 1),
+                        #tf.summary.image('prediction', tf.cast(self._prediciton, tf.uint8), 3),
+                        #tf.summary.image('input_label_image', self._input_label_image, 3)
                     ]
                     self._write_summary_op_with_miou = tf.summary.merge(summary_merge_list_with_miou)
             if ops.exists(self._tboard_save_dir):
