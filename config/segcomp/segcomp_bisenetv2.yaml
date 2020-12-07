@@ -44,10 +44,10 @@ MODEL:
         SEMANTIC_CHANNEL_LAMBDA: 0.25
         SEGHEAD_CHANNEL_EXPAND_RATIO: 2
 TEST:
-    TEST_MODEL: './model/segcomp_e1/final'
+    TEST_MODEL: './model/segcomp_avg8/final'
 TRAIN:
-    MODEL_SAVE_DIR: './model/segcomp_e1/'
-    TBOARD_SAVE_DIR: './model/segcomp_e1/tfboard'
+    MODEL_SAVE_DIR: './model/segcomp_avg8/'
+    TBOARD_SAVE_DIR: './model/segcomp_avg8/tfboard'
     MODEL_PARAMS_CONFIG_FILE_NAME: "model_train_config.json"
     RESTORE_FROM_SNAPSHOT:
         ENABLE: False

@@ -204,7 +204,8 @@ class _ContextEmbedding(cnn_basenet.CNNBaseModel):
         if 'padding' in kwargs:
             self._padding = kwargs['padding']
         with tf.variable_scope(name_or_scope=name_scope):
-            result = tf.reduce_mean(input_tensor, axis=[1, 2], keepdims=True, name='global_avg_pooling')
+            #result = tf.reduce_mean(input_tensor, axis=[1, 2], keepdims=True, name='global_avg_pooling')
+            result = tf.nn.avg_pool(input_tensor, ksize=8, strides=1, padding='SAME', name='8x8_avg_pooling')
             result = self.layerbn(result, self._is_training, 'bn')
             result = self._conv_block(
                 input_tensor=result,
