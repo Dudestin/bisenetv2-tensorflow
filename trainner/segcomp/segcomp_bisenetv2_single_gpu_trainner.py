@@ -68,7 +68,7 @@ class BiseNetV2CityScapesTrainer(object):
         self._enable_miou = CFG.TRAIN.COMPUTE_MIOU.ENABLE
         if self._enable_miou:
             self._record_miou_epoch = CFG.TRAIN.COMPUTE_MIOU.EPOCH
-        self._input_tensor_size = [int(tmp / 4) for tmp in CFG.AUG.TRAIN_CROP_SIZE]
+        self._input_tensor_size = [int(tmp / 2) for tmp in CFG.AUG.TRAIN_CROP_SIZE]
 
         self._init_learning_rate = CFG.SOLVER.LR
         self._moving_ave_decay = CFG.SOLVER.MOVING_AVE_DECAY

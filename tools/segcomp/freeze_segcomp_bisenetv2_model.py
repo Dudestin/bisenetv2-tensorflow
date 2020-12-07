@@ -18,7 +18,7 @@ from bisenet_model import bisenet_v2
 from local_utils.config_utils import parse_config_utils
 
 CFG = parse_config_utils.segcomp_cfg
-DIV_FACT = 4
+DIV_FACT = 2
 
 
 def init_args():

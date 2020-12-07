@@ -462,7 +462,7 @@ def preprocess_image_for_train(src_image, label_image):
     # normalize image
     src_image, label_image = normalize_image(src_image, label_image)
     # downsample input image
-    resize_image_size = (int(CFG.AUG.TRAIN_CROP_SIZE[1] / 4), int(CFG.AUG.TRAIN_CROP_SIZE[0] / 4))
+    resize_image_size = (int(CFG.AUG.TRAIN_CROP_SIZE[1] / 2), int(CFG.AUG.TRAIN_CROP_SIZE[0] / 2))
     src_image = tf.image.resize_bilinear(
         images=tf.expand_dims(src_image, axis=0),
         size=resize_image_size,
@@ -491,7 +491,7 @@ def preprocess_image_for_val(src_image, label_image):
     # normalize image
     src_image, label_image = normalize_image(src_image, label_image)
     # downsample input image
-    resize_image_size = (int(CFG.AUG.TRAIN_CROP_SIZE[1] / 4), int(CFG.AUG.TRAIN_CROP_SIZE[0] / 4))
+    resize_image_size = (int(CFG.AUG.TRAIN_CROP_SIZE[1] / 2), int(CFG.AUG.TRAIN_CROP_SIZE[0] / 2))
     src_image = tf.image.resize_bilinear(
         images=tf.expand_dims(src_image, axis=0),
         size=resize_image_size,

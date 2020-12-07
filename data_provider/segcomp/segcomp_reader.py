@@ -75,7 +75,7 @@ class _CitySpacesDataset(object):
 
         output_src_images = []
         output_label_images = []
-        resize_image_size = (int(CFG.AUG.TRAIN_CROP_SIZE[0] / 4), int(CFG.AUG.TRAIN_CROP_SIZE[1] / 4))
+        resize_image_size = (int(CFG.AUG.TRAIN_CROP_SIZE[0] / 2), int(CFG.AUG.TRAIN_CROP_SIZE[1] / 2))
 
         for index, src_image in enumerate(src_images):
             output_src_image, output_label_image = aug.preprocess_image(
