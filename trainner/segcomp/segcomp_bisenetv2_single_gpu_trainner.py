@@ -26,6 +26,23 @@ from data_provider.segcomp import segcomp_tf_io
 LOG = loguru.logger
 CFG = parse_config_utils.segcomp_cfg
 
+LABEL_CONTOURS = [(0,0,255),(193,214,0),(180,0,129),(255,121,166),(255,0,0),(65,166,1),(208,149,1),(255,255,0),
+        (255,134,0),(0,152,225),(0,203,151),(85,255,50),(92,136,125),(69,47,142),(136,45,66),
+        (0,255,255),(215,0,255),(180,131,135),(81,99,0),(86,62,67)
+        ]
+
+def decode_prediction_mask(mask):
+    mask_shape = mask.shape
+    print(mask_shape)
+    mask_color = np.zeros(shape=[mask_shape[0], mask_shape[1], 3], dtype=np.uint8)
+    unique_label_ids = [v for v in np.unique(mask) if v != 0 and v != 255]
+
+    for label_id in unique_label_ids:
+        print(label_id)
+        idx = np.where(mask == label_id)
+        mask_color[idx] = LABEL_CONTOURS[label_id]
+
+    return mask_color
 
 class BiseNetV2CityScapesTrainer(object):
     """
@@ -178,15 +195,13 @@ class BiseNetV2CityScapesTrainer(object):
 
         # define summary
         with tf.variable_scope('summary'):
-            img_shape = tf.shape(self._input_src_image)
-            print(img_shape)
+            img = self._input_src_image
+            color_pred  = decode_prediction_mask(self._prediciton[0])
+            print('hoge', color_pred.shape)
             summary_merge_list = [
                 tf.summary.scalar("learn_rate", self._learn_rate),
                 tf.summary.scalar("total", self._loss),
                 tf.summary.scalar('l2_loss', self._l2_loss),
-                #tf.summary.image('input_src_image', tf.reshape(self._input_src_image, [-1, img_shape[0], img_shape[1], img_shape[2]]), 1),
-                #tf.summary.image('prediction', tf.cast(self._prediciton, tf.uint8), 3),
-                #tf.summary.image('input_label_image', self._input_label_image, 3)
             ]
             if self._enable_miou:
                 with tf.control_dependencies([self._miou_update_op]):
@@ -195,7 +210,9 @@ class BiseNetV2CityScapesTrainer(object):
                         tf.summary.scalar("total", self._loss),
                         tf.summary.scalar('l2_loss', self._l2_loss),
                         tf.summary.scalar('miou', self._miou),
-                        #tf.summary.image('input_src_image', tf.reshape(self._input_src_image, [-1, img_shape[0], img_shape[1], img_shape[2]]), 1),
+                        tf.summary.image('input source image', img, max_outputs=1),
+                        tf.summary.image('input label image', self._input_label_image, max_outputs=1),
+                        tf.summary.image('prediction', color_pred, max_outputs=1)
                         #tf.summary.image('prediction', tf.cast(self._prediciton, tf.uint8), 3),
                         #tf.summary.image('input_label_image', self._input_label_image, 3)
                     ]
