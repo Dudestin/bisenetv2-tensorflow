@@ -18,6 +18,7 @@ from bisenet_model import bisenet_v2
 from local_utils.config_utils import parse_config_utils
 
 CFG = parse_config_utils.segcomp_cfg
+DIV_FACT = 4
 
 
 def init_args():
@@ -43,7 +44,7 @@ def load_graph_from_ckpt_file(weights_path):
     :return:
     """
     # construct compute graph
-    input_tensor = tf.placeholder(dtype=tf.float32, shape=[1, 512, 1024, 3], name='input_tensor')
+    input_tensor = tf.placeholder(dtype=tf.float32, shape=[1, 1216 / DIV_FACT, 1936/ DIV_FACT, 3], name='input_tensor')
     net = bisenet_v2.BiseNetV2(phase='test', cfg=CFG)
     prediction = net.inference(
         input_tensor=input_tensor,
