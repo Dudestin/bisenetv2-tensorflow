@@ -216,8 +216,6 @@ class _ContextEmbedding(cnn_basenet.CNNBaseModel):
                 use_bias=False,
                 need_activate=True
             )
-            # explicitly broadcast
-            result = tf.broadcast_to(result, tf.shape(input_tensor))
             result = tf.add(result, input_tensor, name='fused_features')
             result = self.conv2d(
                 inputdata=result,
